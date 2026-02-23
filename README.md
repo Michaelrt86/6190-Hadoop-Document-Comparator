@@ -42,7 +42,7 @@ mvn clean package
 Copy the JAR file to the Hadoop ResourceManager container:
 
 ```bash
-docker cp target/WordCountUsingHadoop-0.0.1-SNAPSHOT.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp target/DocumentSimilarity-0.0.1-SNAPSHOT.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 ```
 
 ### 5. **Move Dataset to Docker Container**
