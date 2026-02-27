@@ -88,6 +88,10 @@ Run your MapReduce job using the following command: Here I got an error saying o
 ```bash
 hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/data/input.txt /output1
 ```
+If it works but output file is wrong (Due to it existing already) then you need to delete the old output1 folder every run which is this command
+```bash
+hadoop fs -rm -r -f /output1
+```
 
 ### 9. **View the Output**
 

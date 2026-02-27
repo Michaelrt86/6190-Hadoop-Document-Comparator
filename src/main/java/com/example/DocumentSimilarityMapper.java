@@ -1,5 +1,7 @@
 package com.example;
 
+import org.apache.commons.text.StringTokenizer;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
@@ -8,23 +10,23 @@ import java.io.IOException;
 //Use Split in the document to showcase and determine the key-value pairs for the strings. 
 public class DocumentSimilarityMapper extends Mapper<Object, Text, Text, Text> {
 
-    private static final Text CONSTANT_KEY = new Text("ALL");
+    private final static IntWritable one = new IntWritable(1);
+
+    private Text documentId = new Text();
+    private Text outputValues = new Text();
 
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-        String line = value.toString().trim();
+        StringTokenizer itr = new StringTokenizer(value.toString());
         
-        if (line.isEmpty()) {
-            return;
-        }
+        String line = value.toString();
 
         String[] parts = line.split("\\s+", 2);
 
         if(parts.length == 2){
-            String docId = parts[0];
-            String content = parts[1];
-            // Emit with constant key so all documents go to the same reducer
-            context.write(CONSTANT_KEY, new Text(docId + "\t" + content));
+            documentId.set(parts[0]);
+            outputValues.set(parts[1]);
+            context.write(new Text("ALL"), new Text(documentId + "\t" + outputValues));
         }
     }
-}\n
+}

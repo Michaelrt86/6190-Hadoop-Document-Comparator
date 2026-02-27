@@ -1,9 +1,12 @@
 package com.example;
 
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.*;
+import org.apache.commons.text.StringTokenizer;
+import org.apache.hadoop.io.IntWritable;
 
 //The reducer takes the KEY VALUE pairs from the mapper and then calculates the similarity score using Jaccard similarity.
 public class DocumentSimilarityReducer extends Reducer<Text, Text, Text, Text> {
