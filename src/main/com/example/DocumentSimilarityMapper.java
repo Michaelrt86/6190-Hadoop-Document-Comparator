@@ -23,7 +23,7 @@ public class DocumentSimilarityMapper extends Mapper<Object, Text, Text, Text> {
         if(parts.length == 2){
             documentId.set(parts[0]);
             outputValues.set(parts[1]);
-            context.write(documentId, outputValues);
+            context.write(new Text(documentId), new Text(outputValues));
         }
     }
 }
