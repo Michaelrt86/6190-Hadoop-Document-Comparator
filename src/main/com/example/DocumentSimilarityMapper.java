@@ -8,8 +8,6 @@ import java.io.IOException;
 //Use Split in the document to showcase and determine the key-value pairs for the strings. 
 public class DocumentSimilarityMapper extends Mapper<Object, Text, Text, Text> {
 
-    private static final Text CONSTANT_KEY = new Text("ALL");
-
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
         String line = value.toString().trim();
@@ -23,8 +21,8 @@ public class DocumentSimilarityMapper extends Mapper<Object, Text, Text, Text> {
         if(parts.length == 2){
             String docId = parts[0];
             String content = parts[1];
-            // Emit with constant key so all documents go to the same reducer
-            context.write(CONSTANT_KEY, new Text(docId + "\t" + content));
+            // Create new Text object for constant key each time
+            context.write(new Text("ALL"), new Text(docId + "\t" + content));
         }
     }
 }\n

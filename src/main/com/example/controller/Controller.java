@@ -19,7 +19,9 @@ public class Controller{
         Job job = Job.getInstance(conf, "document similarity");
         job.setJarByClass(Controller.class);
         job.setMapperClass(DocumentSimilarityMapper.class);
+        job.setNumMapTasks(1);  // Set to 1 mapper
         job.setReducerClass(DocumentSimilarityReducer.class);
+        job.setNumReduceTasks(1);  // Set to 1 reducer
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));
