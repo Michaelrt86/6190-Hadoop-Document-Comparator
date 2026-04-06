@@ -8,9 +8,6 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.reduce.IntSumReducer;
-import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
 
 import com.example.DocumentSimilarityMapper;
 import com.example.DocumentSimilarityReducer;
@@ -22,7 +19,7 @@ public class Controller{
         Job job = Job.getInstance(conf, "document similarity");
         job.setJarByClass(Controller.class);
         job.setMapperClass(DocumentSimilarityMapper.class);
-        job.setCombinerClass(DocumentSimilarityReducer.class);
+        job.setNumReduceTasks(1);  // Set to 1 reducer
         job.setReducerClass(DocumentSimilarityReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);

@@ -1,8 +1,8 @@
 # Assignment 2: Document Similarity using MapReduce
 
-**Michael Thompson:** 
+**Name:** 
+Michael Thompson
 
-**Student ID:** 
 
 ## Approach and Implementation
 
@@ -75,6 +75,11 @@ Create a folder in HDFS for the input dataset:
 hadoop fs -mkdir -p /input/data
 ```
 
+To see the folder after creation use this command (ls is a linux command and does not show Hadoop file system)
+```bash
+hadoop fs -ls /
+```
+
 Copy the input dataset to the HDFS folder:
 
 ```bash
@@ -86,11 +91,7 @@ hadoop fs -put ./input.txt /input/data
 Run your MapReduce job using the following command: Here I got an error saying output already exists so I changed it to output1 instead as destination folder
 
 ```bash
-hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/data/input.txt /output1
-```
-If it works but output file is wrong (Due to it existing already) then you need to delete the old output1 folder every run which is this command
-```bash
-hadoop fs -rm -r -f /output1
+hadoop jar DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/data/input.txt /output1
 ```
 
 ### 9. **View the Output**
@@ -124,7 +125,13 @@ To copy the output from HDFS to your local machine:
 
 ## Challenges and Solutions
 
-[Describe any challenges you faced during this assignment. This could be related to the algorithm design (e.g., how to generate pairs), implementation details (e.g., data structures, debugging in Hadoop), or environmental issues. Explain how you overcame these challenges.]
+[Describe any challenges you faced during this assignment. This could be related to the algorithm design (e.g., how to generate pairs), implementation details (e.g., data structures, debugging in Hadoop), or environmental issues. Explain how you overcame these challenges.]<br>
+
+Many of the challenges I had faced in this assignment were due to misunderstandings of Hadoop and how it worked. Overall I was fairly confused with how the Mapper and Reducer function would be able to work together. I also learned more about datatypes like Text and used a StringTokenizer (which I don't often do). My solution also used a Hashset which is essentially a Hashmap but only contains objects and not Key-value pairs (Co-pilot suggestion that I learned more about from GeeksforGeeks).<br>
+
+Co-Pilot helped me debug in areas that I began to lack and really helped me understand how this works overall. I do not want to become dependent upon an AI development tool but it really helped guide my understanding of this assignment. Before I was having a lot of different issues with outputting and it helped clear some of my code and some of the bugs that were stopping me. I am not used to programming with AI but I can understand the application of it further.<br>
+
+Using the Hadoop commands also threw me off earlier on since it is a different file system so traditional ```ls``` would not work but instead I needed to run ```hadoop fs -ls /``` since I was not viewing a traditional file system. I had to start from scratch and then I reunderstood my previous logic from before. I had to look into how Jaccard Similarity worked and used GeeksForGeeks as a reference to get a better understanding of it. I had never used anything like it but it was really interesting to look into. 
 
 ---
 ## Sample Input
@@ -144,3 +151,10 @@ Document3 Sample text with different words
 "Document2, Document3 Similarity: 0.50"
 ```
 ## Obtained Output: (Place your obtained output here.)
+
+**My obtained output from 'input.txt' was***
+```
+Document3, Document2 Similarity: 0.10
+Document3, Document1 Similarity: 0.20
+Document2, Document1 Similarity: 0.18
+```
