@@ -7,13 +7,13 @@ Michael Thompson
 ## Approach and Implementation
 
 ### Mapper Design
-[Explain the logic of your Mapper class. What is its input key-value pair? What does it emit as its output key-value pair? How does it help in solving the overall problem?]
+Located in summary
 
 ### Reducer Design
-[Explain the logic of your Reducer class. What is its input key-value pair? How does it process the values for a given key? What does it emit as the final output? How do you calculate the Jaccard Similarity here?]
+Located in summary
 
 ### Overall Data Flow
-[Describe how data flows from the initial input files, through the Mapper, shuffle/sort phase, and the Reducer to produce the final output.]
+Located in summary
 
 ---
 
@@ -123,9 +123,7 @@ To copy the output from HDFS to your local machine:
 
 ---
 
-## Challenges and Solutions
-
-[Describe any challenges you faced during this assignment. This could be related to the algorithm design (e.g., how to generate pairs), implementation details (e.g., data structures, debugging in Hadoop), or environmental issues. Explain how you overcame these challenges.]<br>
+## Challenges and Solutions <br>
 
 Many of the challenges I had faced in this assignment were due to misunderstandings of Hadoop and how it worked. Overall I was fairly confused with how the Mapper and Reducer function would be able to work together. I also learned more about datatypes like Text and used a StringTokenizer (which I don't often do). My solution also used a Hashset which is essentially a Hashmap but only contains objects and not Key-value pairs (Co-pilot suggestion that I learned more about from GeeksforGeeks).<br>
 
